@@ -1,0 +1,28 @@
+import { Injectable } from '@angular/core';
+import { Observable, of, throwError } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  constructor() { }
+  private isAuthenticated = false;
+
+  login(email: string, password: string): Observable<boolean> {
+    if (email === 'user@example.com' && password === 'password') {
+      this.isAuthenticated = true;
+      return of(true);
+    } else {
+      return throwError('Invalid email or password');
+    }
+  }
+
+  logout() {
+    this.isAuthenticated = false;
+  }
+
+  isLoggedIn(): boolean {
+    return this.isAuthenticated;
+  }
+}

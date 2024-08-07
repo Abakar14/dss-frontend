@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl,NgForm, FormGroup, FormsModule, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'bms-login',
@@ -11,13 +12,43 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent implements OnInit{
 
-  constructor(){
-    
+isLoginView: boolean = false;
+  userObj: any = {
+    userName: "",
+    password: ""
   }
 
+
+
+  email!: string;
+  password!: string;
+
+  loginForm = new FormGroup({
+      email: new FormControl("email",  Validators.required),
+
+      password: new FormControl("password", Validators.required),
+    });
+  
+
+  //BrowserModule, ReactiveFormsModule, AppRoutingModule
+
+  constructor(){ }
+
+  getEmail(){
+    return this.loginForm.get('email');
+  }
+
+  getPassword(){
+    return this.loginForm.get('password');
+  }
+
+
   onSubmit() {
-    // For now, we'll just log the form data to the console
-    console.log('Form submitted');
+    if(this.loginForm.valid){
+      console.log("Form sumitted", this.loginForm.value);
+    }else{
+      this.loginForm.markAllAsTouched();
+    }
   }
 
 
