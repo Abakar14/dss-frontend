@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl,NgForm, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormControl,FormGroup, FormsModule, Validators } from '@angular/forms';
 
 
 @Component({

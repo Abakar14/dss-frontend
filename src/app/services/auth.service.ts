@@ -20,6 +20,7 @@ export class AuthService {
 
   logout() {
     this.isAuthenticated = false;
+    location.href = "/logout";
   }
 
   isLoggedIn(): boolean {

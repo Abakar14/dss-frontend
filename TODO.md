@@ -4,7 +4,7 @@ Public Menus
 2- Login
 3- Register
 4- Password forgotten
-4- About
+5- About
 
 Private Menu after login
 1- Dashbord
