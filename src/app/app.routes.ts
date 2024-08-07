@@ -6,14 +6,18 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     
-    { path: '', component: LayoutComponent},
+    { path: '', component: AppComponent},
+    { path: 'layout', component: LayoutComponent},
     { path: 'login', component: LoginComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'register', component: RegisterComponent },
     { path: 'about', component: AboutComponent },
-    { path: 'dashboard', component: DashboardComponent     }, 
+    { path: 'dashboard', component: DashboardComponent }, 
+    { path: 'forgotPassword', component: ForgotPasswordComponent }, 
     { path: '**', component: NotFoundComponent } //Wildcard route for a 404 page
     
 ];
