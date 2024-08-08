@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'bms-header',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.sass'
 })
 export class HeaderComponent {
 

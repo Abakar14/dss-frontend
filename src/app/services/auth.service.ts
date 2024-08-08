@@ -10,7 +10,7 @@ export class AuthService {
   private isAuthenticated = false;
 
   login(email: string, password: string): Observable<boolean> {
-    if (email === 'user@example.com' && password === 'password') {
+    if (email === 'tasnim@web.de' && password === 'Aba14mah?') {
       this.isAuthenticated = true;
       return of(true);
     } else {
@@ -20,9 +20,11 @@ export class AuthService {
 
   logout() {
     this.isAuthenticated = false;
+    location.href = "/logout";
   }
 
   isLoggedIn(): boolean {
+    this.isAuthenticated = true;
     return this.isAuthenticated;
   }
 }

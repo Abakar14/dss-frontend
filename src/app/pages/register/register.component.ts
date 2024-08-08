@@ -1,16 +1,52 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'bms-register',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.sass'
 })
 export class RegisterComponent {
 
-  onRegister() {
-    // For now, we'll just log the form data to the console
-    console.log('Registration form submitted');
+  registerForm: FormGroup;
+  errorMessage: string | null = null;
+
+  constructor(private fb: FormBuilder) {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]]
+    }, { validator: this.passwordMatchValidator });
   }
+
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
+
+  passwordMatchValidator(formGroup: FormGroup) {
+    return formGroup.get('password')!.value === formGroup.get('confirmPassword')!.value
+      ? null : { mismatch: true };
+  }
+
+  onRegister() {
+    if (this.registerForm.valid) {
+      // Handle form submission
+      console.log('Register form submitted', this.registerForm.value);
+    } else {
+      this.registerForm.markAllAsTouched();
+    }
+  }
+
+
 }
