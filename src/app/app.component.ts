@@ -1,12 +1,12 @@
 import { Component  } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { FooterComponent } from "./pages/footer/footer.component";
-import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 @Component({
   selector: 'bms-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })

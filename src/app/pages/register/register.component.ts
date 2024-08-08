@@ -18,7 +18,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      confirmPassword: ['', [Validators.required]]
     }, { validator: this.passwordMatchValidator });
   }
 
@@ -34,17 +34,19 @@ export class RegisterComponent {
     return this.registerForm.get('confirmPassword');
   }
 
-  passwordMatchValidator(form: FormGroup) {
-    return form.get('password')?.value === form.get('confirmPassword')?.value ? null : { mismatch: true };
+  passwordMatchValidator(formGroup: FormGroup) {
+    return formGroup.get('password')!.value === formGroup.get('confirmPassword')!.value
+      ? null : { mismatch: true };
   }
 
   onRegister() {
     if (this.registerForm.valid) {
       // Handle form submission
-      console.log('Registration form submitted', this.registerForm.value);
+      console.log('Register form submitted', this.registerForm.value);
     } else {
       this.registerForm.markAllAsTouched();
     }
   }
+
 
 }

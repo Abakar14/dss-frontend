@@ -1,56 +1,51 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
   selector: 'bms-login',
   standalone: true,
-  imports:[CommonModule, FormsModule],
+  imports:[CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.sass'
 })
 export class LoginComponent implements OnInit{
+  [x: string]: any;
 
-isLoginView: boolean = false;
-  userObj: any = {
-    userName: "",
-    password: ""
+  loginForm: FormGroup;
+  errorMessage: string | null = null;
+  authService: AuthService = new AuthService;
+
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
-
-
-  email!: string;
-  password!: string;
-
-  loginForm = new FormGroup({
-      email: new FormControl("email",  Validators.required),
-
-      password: new FormControl("password", Validators.required),
-    });
-  
-
-  //BrowserModule, ReactiveFormsModule, AppRoutingModule
-
-  constructor(){ }
-
-  getEmail(){
+  get email() {
     return this.loginForm.get('email');
   }
 
-  getPassword(){
+  get password() {
     return this.loginForm.get('password');
   }
 
-
   onSubmit() {
-    if(this.loginForm.valid){
-      console.log("Form sumitted", this.loginForm.value);
-    }else{
+    if (this.loginForm.valid) {
+      // Handle form submission
+      console.log('Login form submitted', this.loginForm.value);
+      if(this.authService.isLoggedIn()){
+        location.href = '/dashboard';
+          console.log('Login form submitted redirect');
+      }
+        
+    } else {
       this.loginForm.markAllAsTouched();
     }
   }
-
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');

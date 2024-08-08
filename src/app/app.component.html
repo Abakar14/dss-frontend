@@ -1,38 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <div class="container-fluid">
-   <!--   <a class="navbar-brand" routerLink="/">MyApp</a>
-     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="navbar-toggler-icon"></span>
-     </button> -->
-     <div class="collapse navbar-collapse" id="navbarNav">
-       <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-           <a class="nav-link" routerLink="/">Dashboard</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" routerLink="/login">Login</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" routerLink="/register">Register</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" routerLink="/forgotPassword">Forgot Password</a>
-         </li>
-         
-         <li class="nav-item">
-          <a class="nav-link" routerLink="/about">About</a>
-        </li>
-       </ul>
-     </div>
-   </div>
- </nav>
- 
- <div class="container">
-   <router-outlet></router-outlet>
-   <footer>
-     <bms-footer></bms-footer>
+<p>{{title}}</p>
+<div class="container mt-3">
+  <router-outlet></router-outlet>
+</div>
 
-   </footer>
- </div>
+
+
  
 
